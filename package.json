@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/nodef/ffmpegd/issues"
   },
-  "homepage": "https://github.com/nodef/ffmpegd#readme"
+  "homepage": "https://github.com/nodef/ffmpegd#readme",
+  "dependencies": {
+    "async": "^2.6.0",
+    "download-progress": "0.0.1",
+    "progress": "^2.0.0",
+    "unzip": "^0.1.11"
+  }
 }
