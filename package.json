@@ -1,6 +1,6 @@
 {
   "name": "ffmpegd",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Download \"ffmpeg\" and add to PATH.",
   "main": "index.js",
   "scripts": {
