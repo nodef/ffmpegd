@@ -39,6 +39,17 @@ function ffmpegDir() {
   return dirs.filter(nam => nam.startsWith('ffmpeg'));
 };
 
+function ffmpegLink() {
+  // 1. link ffmpeg to PATH
+  if(os.EOL!=='\n') cp.execSync('rm *.sh');
+  else cp.execSync(
+    'mv ffmpeg.sh ffmpeg.cmd && '+
+    'mv ffplay.sh ffplay.cmd && '+
+    'mv ffprobe.sh ffprobe.cmd && '+
+    'chmod +x *.cmd'
+  );
+};
+
 
 // II. download "ffmpeg"
 // 1. is it installed?
@@ -51,10 +62,13 @@ catch(e) {
     fs.createReadStream(dest).pipe(wrt);
     wrt.on('close', () => {
       var dir = ffmpegDir();
-      cp.execSync(`rm ${dest}`);
-      cp.execSync(`chmod -R 666 ${dir}/`);
-      cp.execSync(`mv ${dir}/* .`);
-      cp.execSync(`rmdir ${dir}`);
+      cp.execSync(
+        `rm ${dest} && `+
+        `chmod -R 666 ${dir}/ && `+
+        `mv ${dir}/* . && `+
+        `rmdir ${dir}`
+      );
+      ffmpegLink();
     });
   });
 }
