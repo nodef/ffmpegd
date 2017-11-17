@@ -32,4 +32,11 @@ catch(e) {
   var arch = os.arch();
   arch = ARCH[arch]||arch;
   var url = URL[platform][arch];
+  // 3. download and extract
+  const dest = 'index.zip', path = '.';
+  download([{url, dest}], {}).get((err) => {
+    var wrt = unzip.Extract({path});
+    fs.createReadStream(dest).pipe(wrt);
+    wrt.on('finish', () => fs.unlinkSync(dest));
+  });
 }
