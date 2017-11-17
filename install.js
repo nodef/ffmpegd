@@ -24,15 +24,6 @@ const URL = {
 };
 
 
-function ffmpegUrl() {
-  // 1. get download url
-  var platform = os.platform();
-  if(!URL.hasOwnProperty(platform)) platform = 'linux';
-  var arch = os.arch();
-  arch = ARCH[arch]||arch;
-  return URL[platform][arch];
-};
-
 function ffmpegDir() {
   // 1. get ffmpeg extract directory
   var dirs = fs.readdirSync('.');
@@ -63,10 +54,16 @@ function ffmpegPrepare(dest) {
 // 1. is it installed?
 try { cp.execSync('ffmpeg --help', {'stdio': []}); }
 catch(e) {
+  // 1. get download url
+  var platform = os.platform();
+  if(!URL.hasOwnProperty(platform)) platform = 'linux';
+  var arch = os.arch();
+  arch = ARCH[arch]||arch;
+  var url = URL[platform][arch];
   // 2. download and extract
-  const url = ffmpegUrl(), dest = 'index.zip';
+  const dest = 'index.zip', path = '.';
   download([{url, dest}], {}).get((err) => {
-    var wrt = unzip.Extract({'path': '.'});
+    var wrt = unzip.Extract({path});
     fs.createReadStream(dest).pipe(wrt);
     wrt.on('close', () => ffmpegPrepare(dest));
   });
