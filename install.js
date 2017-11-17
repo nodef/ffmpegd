@@ -49,11 +49,12 @@ catch(e) {
   download([{url, dest}], {}).get((err) => {
     var wrt = unzip.Extract({'path': '.'});
     fs.createReadStream(dest).pipe(wrt);
-    wrt.on('finish', () => {
+    wrt.on('close', () => {
       var dir = ffmpegDir();
-      fs.unlinkSync(dest);
-      fs.moveSync(dir+'/*', '.');
-      fs.rmdirSync(dir);
+      cp.execSync(`rm ${dest}`);
+      cp.execSync(`chmod -R 666 ${dir}/`);
+      cp.execSync(`mv ${dir}/* .`);
+      cp.execSync(`rmdir ${dir}`);
     });
   });
 }
