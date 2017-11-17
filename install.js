@@ -33,11 +33,11 @@ function ffmpegUrl() {
   return URL[platform][arch];
 };
 
-function ffmpegDir() {}
+function ffmpegDir() {
   // 1. get ffmpeg extract directory
   var dirs = fs.readdirSync('.');
   return dirs.filter(nam => nam.startsWith('ffmpeg'));
-;
+};
 
 
 // II. download "ffmpeg"
