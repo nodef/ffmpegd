@@ -51,6 +51,9 @@ catch(e) {
     fs.createReadStream(dest).pipe(wrt);
     wrt.on('finish', () => {
       var dir = ffmpegDir();
+      fs.unlinkSync(dest);
+      fs.moveSync(dir+'/*', '.');
+      fs.rmdirSync(dir);
     });
   });
 }
