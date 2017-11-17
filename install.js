@@ -39,7 +39,7 @@ function ffmpegDir() {
   return dirs.filter(nam => nam.startsWith('ffmpeg-'));
 };
 
-function ffmpegPrepare() {
+function ffmpegPrepare(dest) {
   // 1. prepare directory
   var dir = ffmpegDir();
   cp.execSync(
@@ -68,6 +68,6 @@ catch(e) {
   download([{url, dest}], {}).get((err) => {
     var wrt = unzip.Extract({'path': '.'});
     fs.createReadStream(dest).pipe(wrt);
-    wrt.on('close', () => ffmpegPrepare());
+    wrt.on('close', () => ffmpegPrepare(dest));
   });
 }
