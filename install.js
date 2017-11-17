@@ -23,21 +23,39 @@ const URL = {
   }
 };
 
-// II. download "ffmpeg"
-// 1. is it installed?
-try { cp.execSync('ffmpeg --help', {'stdio': []}); }
-catch(e) {
-  // 2. get download url
+
+function ffmpegUrl() {
+  // 1. get download url
   var platform = os.platform();
   if(!URL.hasOwnProperty(platform)) platform = 'linux';
   var arch = os.arch();
   arch = ARCH[arch]||arch;
-  var url = URL[platform][arch];
+  return URL[platform][arch];
+};
+
+function ffmpegDir() {}
+  // 1. get ffmpeg extract directory
+  var dirs = fs.readdirSync('.');
+  return dirs.filter(nam => nam.startsWith('ffmpeg'));
+;
+
+
+// II. download "ffmpeg"
+// 1. is it installed?
+try { cp.execSync('ffmpeg --help', {'stdio': []}); }
+catch(e) {
   // 3. download and extract
-  const dest = 'index.zip', path = '.';
+  const url = ffmpegUrl(), dest = 'index.zip';
   download([{url, dest}], {}).get((err) => {
-    var wrt = unzip.Extract({path});
+    var wrt = unzip.Extract({'path': '.'});
     fs.createReadStream(dest).pipe(wrt);
-    wrt.on('finish', () => fs.unlinkSync(dest));
+    wrt.on('finish', () => {
+      var dir = ffmpegDir();
+      cp.execSync(
+        `rm ${dest} && `+
+        `mv ${dir}/* . && `+
+        `rmdir ${dir} && `
+      );
+    });
   });
 }
