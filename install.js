@@ -19,7 +19,7 @@ const URL = {
     'x64': 'https://ffmpeg.zeranoe.com/builds/win64/shared/ffmpeg-3.2.4-win64-shared.zip'
   },
   'darwin': {
-    'x64': 'https://ffmpeg.zeranoe.com/builds/macos64/shared/ffmpeg-3.2-macos64-shared.zip'
+    'x64': 'https://ffmpeg.zeranoe.com/builds/macos64/shared/ffmpeg-3.3-macos64-shared.zip'
   }
 };
 
