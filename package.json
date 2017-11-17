@@ -7,6 +7,11 @@
     "install": "node install",
     "test": "exit"
   },
+  "bin": {
+    "ffmpeg": "ffmpeg.cmd",
+    "ffplay": "ffplay.cmd",
+    "ffprobe": "ffprobe.cmd"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nodef/ffmpegd.git"
