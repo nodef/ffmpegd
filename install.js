@@ -54,7 +54,7 @@ catch(e) {
       cp.execSync(
         `rm ${dest} && `+
         `mv ${dir}/* . && `+
-        `rmdir ${dir} && `
+        `rmdir ${dir}`
       );
     });
   });
