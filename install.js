@@ -4,8 +4,9 @@ const cp = require('child_process');
 const fs = require('fs');
 
 
-// 1. settings
-const url = {
+// I. settings
+const ARCH = {'ia32': 'x86', 'x32': 'x86'};
+const URL = {
   'linux': {
     'arm': 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armel-32bit-static.tar.xz',
     'arm64': 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-64bit-static.tar.xz',
@@ -21,7 +22,14 @@ const url = {
   }
 };
 
-
+// II. download "ffmpeg"
+// 1. is it installed?
 try { cp.execSync('ffmpeg --help'); }
 catch(e) {
+  // 2. get download url
+  var platform = os.platform();
+  if(!URL.hasOwnProperty(platform)) platform = 'linux';
+  var arch = os.arch();
+  arch = ARCH[arch]||arch;
+  var url = URL[platform][arch];
 }
