@@ -29,7 +29,6 @@
   "dependencies": {
     "async": "^2.6.0",
     "download-progress": "0.0.1",
-    "fs-extra": "^4.0.2",
     "progress": "^2.0.0",
     "unzip": "^0.1.11"
   }
