@@ -1,7 +1,7 @@
 const download = require('download-progress/lib/download-progress');
 const unzip = require('unzip');
 const cp = require('child_process');
-const fs = require('fs');
+const fs = require('fs-extra');
 const os = require('os');
 
 
@@ -51,11 +51,6 @@ catch(e) {
     fs.createReadStream(dest).pipe(wrt);
     wrt.on('finish', () => {
       var dir = ffmpegDir();
-      cp.execSync(
-        `rm ${dest} && `+
-        `mv ${dir}/* . && `+
-        `rmdir ${dir}`
-      );
     });
   });
 }
