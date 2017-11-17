@@ -39,8 +39,16 @@ function ffmpegDir() {
   return dirs.filter(nam => nam.startsWith('ffmpeg-'));
 };
 
-function ffmpegLink() {
-  // 1. link ffmpeg to PATH
+function ffmpegPrepare() {
+  // 1. prepare directory
+  var dir = ffmpegDir();
+  cp.execSync(
+    `rm -rf node_modules && `+
+    `rm ${dest} && `+
+    `mv ${dir}/* . && `+
+    `rmdir ${dir}`
+  );
+  // 2. link ffmpeg to PATH
   if(os.EOL!=='\n') cp.execSync('rm *.sh');
   else cp.execSync(
     'mv ffmpeg.sh ffmpeg.cmd && '+
@@ -55,19 +63,11 @@ function ffmpegLink() {
 // 1. is it installed?
 try { cp.execSync('ffmpeg --help', {'stdio': []}); }
 catch(e) {
-  // 3. download and extract
+  // 2. download and extract
   const url = ffmpegUrl(), dest = 'index.zip';
   download([{url, dest}], {}).get((err) => {
     var wrt = unzip.Extract({'path': '.'});
     fs.createReadStream(dest).pipe(wrt);
-    wrt.on('close', () => {
-      var dir = ffmpegDir();
-      cp.execSync(
-        `rm ${dest} && `+
-        `mv ${dir}/* . && `+
-        `rmdir ${dir}`
-      );
-      ffmpegLink();
-    });
+    wrt.on('close', () => ffmpegPrepare());
   });
 }
