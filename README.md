@@ -5,8 +5,8 @@
 Download "ffmpeg" and add to PATH.
 
 ```bash
-# install ffmpeg 3.3.2
-npm install -g ffmpegd@3.3.2
+# install ffmpeg 3.3.3
+npm install -g ffmpegd@3.3.3
 ```
 ```bash
 # use ffmpeg
