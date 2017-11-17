@@ -79,7 +79,8 @@ function ffmpegPrepare(dest) {
 try { cp.execSync('ffmpeg --help', {'stdio': []}); }
 catch(e) {
   // 2. download and extract
-  var url = ffmpegUrl(), dest = ffmpegFile(url);
+  var url = ffmpegUrl();
+  var dest = ffmpegFile(url).replace('ffmpeg-', '');
   download([{url, dest}], {}).get((err) => {
     ffmpegExtract(dest, () => ffmpegPrepare(dest));
   });
