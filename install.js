@@ -36,7 +36,7 @@ function ffmpegUrl() {
 function ffmpegDir() {
   // 1. get ffmpeg extract directory
   var dirs = fs.readdirSync('.');
-  return dirs.filter(nam => nam.startsWith('ffmpeg'));
+  return dirs.filter(nam => nam.startsWith('ffmpeg-'));
 };
 
 function ffmpegLink() {
@@ -64,7 +64,6 @@ catch(e) {
       var dir = ffmpegDir();
       cp.execSync(
         `rm ${dest} && `+
-        `chmod -R 666 ${dir}/ && `+
         `mv ${dir}/* . && `+
         `rmdir ${dir}`
       );
