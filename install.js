@@ -2,6 +2,7 @@ const download = require('download-progress/lib/download-progress');
 const unzip = require('unzip');
 const cp = require('child_process');
 const fs = require('fs');
+const os = require('os');
 
 
 // I. settings
@@ -24,7 +25,7 @@ const URL = {
 
 // II. download "ffmpeg"
 // 1. is it installed?
-try { cp.execSync('ffmpeg --help'); }
+try { cp.execSync('ffmpeg --help', {'stdio': []}); }
 catch(e) {
   // 2. get download url
   var platform = os.platform();
