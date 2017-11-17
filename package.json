@@ -4,6 +4,7 @@
   "description": "Download \"ffmpeg\" and add to PATH.",
   "main": "index.js",
   "scripts": {
+    "install": "node install",
     "test": "exit"
   },
   "repository": {
