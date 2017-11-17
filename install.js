@@ -1,6 +1,7 @@
 const download = require('download-progress/lib/download-progress');
 const unzip = require('unzip');
 const cp = require('child_process');
+const tar = require('tar');
 const fs = require('fs');
 const os = require('os');
 
@@ -31,6 +32,20 @@ function ffmpegUrl() {
   var arch = os.arch();
   arch = ARCH[arch]||arch;
   return URL[platform][arch];
+};
+
+function ffmpegFile(url) {
+  // 1. get filename from url
+  var i = url.lastIndexOf('/');
+  return url.substring(i+1);
+};
+
+function ffmpegExtract(dest, fn) {
+  // 1. extract ffmpeg
+  if(dest.indexOf('.tar')>=0) return tar.extract({'file': dest}).then(fn);
+  var wrt = unzip.Extract({'path': '.'});
+  fs.createReadStream(dest).pipe(wrt);
+  wrt.on('close', fn);
 };
 
 function ffmpegDir() {
@@ -64,10 +79,8 @@ function ffmpegPrepare(dest) {
 try { cp.execSync('ffmpeg --help', {'stdio': []}); }
 catch(e) {
   // 2. download and extract
-  const url = ffmpegUrl(), dest = 'index.zip';
+  var url = ffmpegUrl(), dest = ffmpegFile(url);
   download([{url, dest}], {}).get((err) => {
-    var wrt = unzip.Extract({'path': '.'});
-    fs.createReadStream(dest).pipe(wrt);
-    wrt.on('close', () => ffmpegPrepare(dest));
+    ffmpegExtract(dest, () => ffmpegPrepare(dest));
   });
 }
