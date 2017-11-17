@@ -16,8 +16,8 @@ const URL = {
     'x64': 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz'
   },
   'win32': {
-    'x86': 'https://ffmpeg.zeranoe.com/builds/win32/shared/ffmpeg-3.3.1-win32-shared.zip',
-    'x64': 'https://ffmpeg.zeranoe.com/builds/win64/shared/ffmpeg-3.3.1-win64-shared.zip'
+    'x86': 'https://ffmpeg.zeranoe.com/builds/win32/shared/ffmpeg-3.3.2-win32-shared.zip',
+    'x64': 'https://ffmpeg.zeranoe.com/builds/win64/shared/ffmpeg-3.3.2-win64-shared.zip'
   },
   'darwin': {
     'x64': 'https://ffmpeg.zeranoe.com/builds/macos64/shared/ffmpeg-3.3-macos64-shared.zip'
