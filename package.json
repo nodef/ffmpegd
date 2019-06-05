@@ -1,6 +1,6 @@
 {
   "name": "ffmpegd",
-  "version": "3.3.4",
+  "version": "3.3.5",
   "description": "Download \"ffmpeg\" and add to PATH.",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "async": "^2.6.0",
     "download-progress": "0.0.1",
     "progress": "^2.0.0",
-    "tar": "^4.0.2",
-    "unzip": "^0.1.11"
+    "tar": "^4.4.10",
+    "unzipper": "^0.10.0"
   }
 }
