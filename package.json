@@ -1,6 +1,6 @@
 {
   "name": "ffmpegd",
-  "version": "3.3.5",
+  "version": "3.3.6",
   "description": "Download \"ffmpeg\" and add to PATH.",
   "main": "index.js",
   "scripts": {
@@ -27,10 +27,10 @@
   },
   "homepage": "https://github.com/nodef/ffmpegd#readme",
   "dependencies": {
-    "async": "^2.6.0",
+    "async": "^3.2.0",
     "download-progress": "0.0.1",
-    "progress": "^2.0.0",
-    "tar": "^4.4.10",
-    "unzipper": "^0.10.0"
+    "progress": "^2.0.3",
+    "tar": "^6.0.1",
+    "unzipper": "^0.10.10"
   }
 }
