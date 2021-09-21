@@ -1,10 +1,11 @@
 {
   "name": "ffmpegd",
-  "version": "3.3.9",
+  "version": "4.4.0",
   "description": "Download \"ffmpeg\" and add to PATH.",
   "main": "index.js",
   "scripts": {
-    "install": "node install",
+    "deploy": "ebuild publish+github --publishMin=false --publishBranch=false",
+    "postinstall": "node ./postinstall.js",
     "test": "exit"
   },
   "bin": {
@@ -30,7 +31,10 @@
     "async": "^3.2.1",
     "download-progress": "0.0.1",
     "progress": "^2.0.3",
-    "tar": "^6.1.6",
+    "tar": "^6.1.11",
     "unzipper": "^0.10.11"
+  },
+  "devDependencies": {
+    "extra-build": "^1.4.3"
   }
 }

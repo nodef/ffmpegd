@@ -1,5 +1,5 @@
 const download = require('download-progress/lib/download-progress');
-const unzip = require('unzip');
+const unzip = require('unzipper');
 const cp = require('child_process');
 const tar = require('tar');
 const fs = require('fs');
@@ -10,17 +10,17 @@ const os = require('os');
 const ARCH = {'ia32': 'x86', 'x32': 'x86'};
 const URL = {
   'linux': {
-    'arm': 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-armel-32bit-static.tar.xz',
-    'arm64': 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-arm64-64bit-static.tar.xz',
-    'x86': 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-32bit-static.tar.xz',
-    'x64': 'https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz'
+    'arm':   'https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-armhf-static.tar.xz',
+    'arm64': 'https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-arm64-static.tar.xz',
+    'x86':   'https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-i686-static.tar.xz',
+    'x64':   'https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz  '
   },
   'win32': {
-    'x86': 'https://ffmpeg.zeranoe.com/builds/win32/shared/ffmpeg-3.3.4-win32-shared.zip',
-    'x64': 'https://ffmpeg.zeranoe.com/builds/win64/shared/ffmpeg-3.3.4-win64-shared.zip'
+    'x86': 'https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip',
+    'x64': 'https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip'
   },
   'darwin': {
-    'x64': 'https://ffmpeg.zeranoe.com/builds/macos64/shared/ffmpeg-3.3.4-macos64-shared.zip'
+    'x64': 'https://evermeet.cx/ffmpeg/ffmpeg-4.4.zip'
   }
 };
 
