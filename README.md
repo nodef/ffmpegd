@@ -9,3 +9,5 @@ npm install -g ffmpegd@3.3.4
 # use ffmpeg
 ffmpeg --help
 ```
+
+![](https://ga-beacon.deno.dev/G-RC63DPBH3P:SH3Eq-NoQ9mwgYeHWxu7cw/github.com/nodef/ffmpegd)
